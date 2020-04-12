@@ -1,4 +1,5 @@
-from .SortingAlgorithm import SortingAlgorithm 
+from .SortingAlgorithm import SortingAlgorithm
+
 
 class BubbleSort(SortingAlgorithm):
     def __init__(self, data_set: list, call_on_swap):
@@ -11,9 +12,10 @@ class BubbleSort(SortingAlgorithm):
             for i in range(length - 1):
                 val1 = data_set[i].value
                 val2 = data_set[i + 1].value
-                if(val1 > val2):
+                if (val1 > val2):
                     super().swap(i, i + 1)
             length = length - 1
+
 
 class QuickSort(SortingAlgorithm):
     def __init__(self, data_set: list, call_on_swap):
@@ -24,11 +26,11 @@ class QuickSort(SortingAlgorithm):
 
     def sort_recursive(self, index_start: int, index_end: int):
         data_set = super().get_data_set()
-        if(index_start < index_end):
+        if (index_start < index_end):
             piv = data_set[index_end].value
             smallest = index_start - 1
             for i in range(index_start, index_end):
-                if(data_set[i].value < piv):
+                if (data_set[i].value < piv):
                     smallest = smallest + 1
                     super().swap(i, smallest)
             piv = smallest + 1

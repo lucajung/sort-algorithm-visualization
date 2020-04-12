@@ -1,9 +1,9 @@
 import tkinter as tk
-from tkinter import ttk, filedialog
 from DataPoint import DataPoint
 from RGB import RGB
 import random
 from SortingAlgorithms.SortingAlgorithms import *
+
 
 class Screen(tk.Tk):
 
@@ -31,11 +31,13 @@ class Screen(tk.Tk):
         self.application_status_frame.grid(row=0, column=0, padx=0, pady=0)
         self.application_status_frame.pack_propagate(0)
 
-        self.application_main_frame = tk.Frame(self.window_frame, width=self.window_width - self.control_width, height=self.window_height)
+        self.application_main_frame = tk.Frame(self.window_frame, width=self.window_width - self.control_width,
+                                               height=self.window_height)
         self.application_main_frame.grid(row=0, column=1, padx=0, pady=0)
 
         # Setting up Canvas
-        self.canvas = tk.Canvas(self.application_main_frame, width=self.window_width - self.control_width, height=self.window_height)
+        self.canvas = tk.Canvas(self.application_main_frame, width=self.window_width - self.control_width,
+                                height=self.window_height)
         self.canvas.pack()
 
         self.generate_data_set(int((self.window_width - self.control_width) / 5))
@@ -44,7 +46,7 @@ class Screen(tk.Tk):
 
         self.sort("Bubble Sort")
 
-        #self.after(2000, self.shuffle)
+        # self.after(2000, self.shuffle)
 
         self.mainloop()
 
@@ -65,10 +67,11 @@ class Screen(tk.Tk):
         pos = 0
         self.canvas.delete("all")
         for i in self.data_set:
-            self.canvas.create_line(pos, 0, pos, i.value, fill=self.get_hex_code(i.color.r,i.color.g, i.color.b), width=3)
+            self.canvas.create_line(pos, 0, pos, i.value, fill=self.get_hex_code(i.color.r, i.color.g, i.color.b),
+                                    width=3)
             pos += 5
         self.canvas.update()
-    
+
     def get_hex_code(self, r, g, b):
         return "#" + '{:02x}'.format(r) + '{:02x}'.format(g) + '{:02x}'.format(b)
 
@@ -78,10 +81,10 @@ class Screen(tk.Tk):
     def sort(self, method: str):
         self.set_info("sorting...")
         time = 0
-        if(method == "Bubble Sort"):
+        if (method == "Bubble Sort"):
             sort = BubbleSort(self.data_set, self.update_canvas)
             sort.sort()
-        elif(method == "Quick Sort"):
+        elif (method == "Quick Sort"):
             sort = QuickSort(self.data_set, self.update_canvas)
             sort.sort()
         self.set_info("Done (" + str(time) + ")")

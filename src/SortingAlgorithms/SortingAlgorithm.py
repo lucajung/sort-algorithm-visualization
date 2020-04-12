@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class SortingAlgorithm(ABC):
 
     def __init__(self, data_set: list, call_on_swap):
@@ -12,7 +13,7 @@ class SortingAlgorithm(ABC):
     def swap(self, index1, index2):
         self.data_set[index1], self.data_set[index2] = self.data_set[index2], self.data_set[index1]
         self.call_on_swap()
-    
+
     @abstractmethod
     def sort(self):
         pass
