@@ -10,6 +10,7 @@ class Screen(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
+        self.data_set = list()
         self.window_width = 1000
         self.window_height = 700
 
@@ -81,10 +82,10 @@ class Screen(tk.Tk):
     def sort(self, method: str):
         self.set_info("sorting...")
         time = 0
-        if (method == "Bubble Sort"):
+        if method == "Bubble Sort":
             sort = BubbleSort(self.data_set, self.update_canvas)
             sort.sort()
-        elif (method == "Quick Sort"):
+        elif method == "Quick Sort":
             sort = QuickSort(self.data_set, self.update_canvas)
             sort.sort()
         self.set_info("Done (" + str(time) + ")")
