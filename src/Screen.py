@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 from DataPoint import DataPoint
 from RGB import RGB
-import random 
+import random
+from SortingAlgorithms.SortingAlgorithms import *
 
 class Screen(tk.Tk):
 
@@ -41,7 +42,7 @@ class Screen(tk.Tk):
 
         self.shuffle()
 
-        self.sort("Quick Sort")
+        self.sort("Bubble Sort")
 
         #self.after(2000, self.shuffle)
 
@@ -53,7 +54,7 @@ class Screen(tk.Tk):
 
     def generate_data_set(self, length: int):
         self.data_set = list()
-        for i in range(length):
+        for _ in range(length):
             value = random.randint(10, self.window_height)
             green_portion = int(value / self.window_height * 255)
             red_portion = 255 - green_portion
@@ -78,35 +79,9 @@ class Screen(tk.Tk):
         self.set_info("sorting...")
         time = 0
         if(method == "Bubble Sort"):
-            self.bubble_sort()
+            sort = BubbleSort(self.data_set, self.update_canvas)
+            sort.sort()
         elif(method == "Quick Sort"):
-            self.quick_sort(0, len(self.data_set) - 1)
+            sort = QuickSort(self.data_set, self.update_canvas)
+            sort.sort()
         self.set_info("Done (" + str(time) + ")")
-    
-    def swap(self, index1, index2):
-        self.data_set[index1], self.data_set[index2] = self.data_set[index2], self.data_set[index1]
-    
-    def bubble_sort(self):
-        length = len(self.data_set)
-        for _ in range(length - 1):
-            for i in range(length - 1):
-                val1 = self.data_set[i].value
-                val2 = self.data_set[i + 1].value
-                if(val1 > val2):
-                    self.swap(i, i + 1)
-                    self.update_canvas()
-            length = length - 1
-    
-    def quick_sort(self, index_start: int, index_end: int):
-        if(index_start < index_end):
-            piv = self.data_set[index_end].value
-            smallest = index_start - 1
-            for i in range(index_start, index_end):
-                if(self.data_set[i].value < piv):
-                    smallest = smallest + 1
-                    self.swap(i, smallest)
-                    self.update_canvas()
-            piv = smallest + 1
-            self.swap(piv, index_end)
-            self.quick_sort(index_start, piv - 1)
-            self.quick_sort(piv + 1, index_end)
