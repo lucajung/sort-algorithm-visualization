@@ -17,7 +17,7 @@ class Screen(tk.Tk):
         self.control_width = 100
 
         # Setting the window title
-        self.wm_title("Sorting Visualzation")
+        self.wm_title("Sorting Visualization")
 
         self.resizable(0, 0)
 
