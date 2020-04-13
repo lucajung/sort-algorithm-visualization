@@ -7,6 +7,9 @@ class SortingAlgorithm(ABC):
         self.data_set = data_set
         self.call_on_swap = call_on_swap
 
+    def __call__(self, data_set: list, call_on_swap):
+        self.__init__(data_set, call_on_swap)
+
     def get_data_set(self):
         return self.data_set
 
@@ -16,4 +19,9 @@ class SortingAlgorithm(ABC):
 
     @abstractmethod
     def sort(self):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def name():
         pass

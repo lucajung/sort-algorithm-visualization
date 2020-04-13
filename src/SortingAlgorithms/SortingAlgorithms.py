@@ -1,6 +1,13 @@
 from .SortingAlgorithm import SortingAlgorithm
 
 
+class SortingAlgorithms:
+    def __init__(self):
+        self.algorithms = list()
+        self.algorithms.append(BubbleSort)
+        self.algorithms.append(QuickSort)
+
+
 class BubbleSort(SortingAlgorithm):
     def __init__(self, data_set: list, call_on_swap):
         super().__init__(data_set, call_on_swap)
@@ -15,6 +22,10 @@ class BubbleSort(SortingAlgorithm):
                 if val1 > val2:
                     super().swap(i, i + 1)
             length = length - 1
+
+    @staticmethod
+    def name():
+        return "Bubble Sort"
 
 
 class QuickSort(SortingAlgorithm):
@@ -37,3 +48,7 @@ class QuickSort(SortingAlgorithm):
             super().swap(piv, index_end)
             self.sort_recursive(index_start, piv - 1)
             self.sort_recursive(piv + 1, index_end)
+
+    @staticmethod
+    def name():
+        return "Quick Sort"
