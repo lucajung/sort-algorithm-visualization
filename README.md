@@ -2,10 +2,21 @@
 The sorting algorithm visualization is a small demo application to easily compare different sorting algorithms.
 It is capable of sorting a completely random dataset aswell as a nearly sorted dataset, to show of the differences in runtime.
 
-For example:<br />
-<img src="/images/quick_sort.gif" width="300"><br />
-<img src="/images/selection_sort.gif" width="300"><br />
-<img src="/images/bubble_sort_single.gif" width="300">
+For example:
+<br />
+Quicksort:
+<br />
+<img src="/images/quick_sort.gif" width="300">
+<br />
+<br />
+Selectionsort:
+<br />
+<img src="/images/selection_sort.gif" width="300" />
+<br />
+<br />
+Bubblesort (sorting 2 swapped datapoints):
+<br />
+<img src="/images/bubble_sort_single.gif" width="300" />
 
 Extensibility
 ---
