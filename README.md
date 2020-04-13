@@ -34,5 +34,16 @@ class NewSortingAlgorithm(SortingAlgorithm):
     def name():
         return "Name of sorting algorithm"
 ```
+After that you have to register your new algorithm in the class SortingAlgorithms:
+```python
+def __init__(self):
+    self.algorithms = list()
+    self.algorithms.append(BubbleSort)
+    self.algorithms.append(QuickSort)
+    self.algorithms.append(InsertionSort)
+    self.algorithms.append(SelectionSort)
+    ...
+    self.algorithms.append(NewSortingAlgorithm)   # register new algorithm
+```
 That's all!<br />
 Enjoy!
