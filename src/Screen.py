@@ -25,7 +25,7 @@ class Screen(tk.Tk):
 
         self.control_width = 100
 
-        self.canvas_bar_width = 2
+        self.canvas_bar_width = 5
         self.canvas_bar_space = 1
         # Dimensions ==
 
@@ -59,20 +59,23 @@ class Screen(tk.Tk):
 
         # Setting up control elements
         sort_button = ttk.Button(self.application_status_frame, text="Sort", command=self.button_sort_pressed)
-        sort_button.grid(row=1, column=0, padx=0, pady=10)
+        sort_button.grid(row=2, column=0, padx=0, pady=10)
 
         shuffle_button = ttk.Button(self.application_status_frame, text="Shuffle", command=self.shuffle)
         shuffle_button.grid(row=0, column=0, padx=0, pady=10)
 
+        shuffle_button = ttk.Button(self.application_status_frame, text="Shuffle Single", command=self.shuffle_single)
+        shuffle_button.grid(row=1, column=0, padx=0, pady=10)
+
         # Setting up Listbox
         self.sorting_algorithms_select_box = tk.Listbox(self.application_status_frame, selectmode='browse')
-        self.sorting_algorithms_select_box.grid(row=2, column=0, padx=0, pady=10)
+        self.sorting_algorithms_select_box.grid(row=3, column=0, padx=0, pady=10)
         for i in self.sorting_algorithms.algorithms:
             self.sorting_algorithms_select_box.insert('end', i.name())
 
         # Setting up status label
         self.status_label = ttk.Label(self.application_status_frame, text="")
-        self.status_label.grid(row=3, column=0, padx=0, pady=10)
+        self.status_label.grid(row=4, column=0, padx=0, pady=10)
 
         # Generate random dataset
         self.generate_data_set(
@@ -88,6 +91,13 @@ class Screen(tk.Tk):
             random.shuffle(self.data_set)
             self.update_canvas()
 
+    def shuffle_single(self):
+        if not self.is_sorting:
+            index1 = random.randint(0, len(self.data_set) - 1)
+            index2 = random.randint(0, len(self.data_set) - 1)
+            self.data_set[index1], self.data_set[index2] = self.data_set[index2], self.data_set[index1]
+            self.update_canvas()
+
     def generate_data_set(self, length: int):
         self.data_set = list()
         for _ in range(length):
@@ -98,7 +108,7 @@ class Screen(tk.Tk):
             self.data_set.append(DataPoint(value, rgb))
 
     def update_canvas(self):
-        pos = 1
+        pos = self.canvas_bar_width
         self.canvas.delete("all")
         for i in self.data_set:
             self.canvas.create_line(pos, 0, pos, i.value, fill=self.get_hex_code(i.color.r, i.color.g, i.color.b),

@@ -6,6 +6,8 @@ class SortingAlgorithms:
         self.algorithms = list()
         self.algorithms.append(BubbleSort)
         self.algorithms.append(QuickSort)
+        self.algorithms.append(InsertionSort)
+        self.algorithms.append(SelectionSort)
 
 
 class BubbleSort(SortingAlgorithm):
@@ -52,3 +54,43 @@ class QuickSort(SortingAlgorithm):
     @staticmethod
     def name():
         return "Quick Sort"
+
+
+class InsertionSort(SortingAlgorithm):
+    def __init__(self, data_set: list, call_on_swap):
+        super().__init__(data_set, call_on_swap)
+
+    def sort(self):
+        data_set = super().get_data_set()
+        length = len(data_set)
+        for i in range(0, length):
+            val = data_set[i]
+            j = i
+            while j > 0 and data_set[j - 1].value > val.value:
+                super().insert(j, data_set[j - 1])
+                j = j - 1
+            super().insert(j, val)
+
+    @staticmethod
+    def name():
+        return "Insertion Sort"
+
+
+class SelectionSort(SortingAlgorithm):
+    def __init__(self, data_set: list, call_on_swap):
+        super().__init__(data_set, call_on_swap)
+
+    def sort(self):
+        data_set = super().get_data_set()
+        length = len(data_set)
+        for i in range(length - 1):
+            min = i
+            for j in range(i + 1, length):
+                if data_set[j].value < data_set[min].value:
+                    min = j
+            if min != i:
+                super().swap(i, min)
+
+    @staticmethod
+    def name():
+        return "Selection Sort"
