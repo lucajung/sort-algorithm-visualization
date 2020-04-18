@@ -16,6 +16,9 @@ class Screen(tk.Tk):
         # Dataset
         self.data_set = list()
 
+        # Parameter
+        self.active_rgb = RGB(0, 0, 255)
+
         # Status
         self.is_sorting = False
 
@@ -111,8 +114,12 @@ class Screen(tk.Tk):
         pos = self.canvas_bar_width
         self.canvas.delete("all")
         for i in self.data_set:
-            self.canvas.create_line(pos, 0, pos, i.value, fill=self.get_hex_code(i.color.r, i.color.g, i.color.b),
-                                    width=self.canvas_bar_width)
+            if i.active:
+                self.canvas.create_line(pos, 0, pos, i.value, fill=self.get_hex_code(self.active_rgb.r, self.active_rgb.g, self.active_rgb.b),
+                                        width=self.canvas_bar_width)
+            else:
+                self.canvas.create_line(pos, 0, pos, i.value, fill=self.get_hex_code(i.color.r, i.color.g, i.color.b),
+                                        width=self.canvas_bar_width)
             pos += self.canvas_bar_width + self.canvas_bar_space
         self.canvas.update()
 
