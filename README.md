@@ -24,11 +24,12 @@ The software is build to easily extend the sorting algorihms:<br />
 In order to add a new sorting algorithm, just add a new class to ([SortingAlgorithms.py](src/SortingAlgorithms/SortingAlgorithms.py)):
 ```python
 class NewSortingAlgorithm(SortingAlgorithm):
-    def __init__(self, data_set: list, call_on_swap):
-        super().__init__(data_set, call_on_swap)
+    def __init__(self, data_set: list, call_on_swap, redraw_step_size: int):
+        super().__init__(data_set, call_on_swap, redraw_step_size)
 
     def sort(self):
-        pass
+        ...
+        super().sorted()
 
     @staticmethod
     def name():
