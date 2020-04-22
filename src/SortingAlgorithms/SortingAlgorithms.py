@@ -11,8 +11,8 @@ class SortingAlgorithms:
 
 
 class BubbleSort(SortingAlgorithm):
-    def __init__(self, data_set: list, call_on_swap):
-        super().__init__(data_set, call_on_swap)
+    def __init__(self, data_set: list, call_on_swap, redraw_step_size: int):
+        super().__init__(data_set, call_on_swap, redraw_step_size)
 
     def sort(self):
         data_set = super().get_data_set()
@@ -24,6 +24,7 @@ class BubbleSort(SortingAlgorithm):
                 if val1 > val2:
                     super().swap(i, i + 1)
             length = length - 1
+        super().sorted()
 
     @staticmethod
     def name():
@@ -31,11 +32,12 @@ class BubbleSort(SortingAlgorithm):
 
 
 class QuickSort(SortingAlgorithm):
-    def __init__(self, data_set: list, call_on_swap):
-        super().__init__(data_set, call_on_swap)
+    def __init__(self, data_set: list, call_on_swap, redraw_step_size: int):
+        super().__init__(data_set, call_on_swap, redraw_step_size)
 
     def sort(self):
         self.sort_recursive(0, len(super().get_data_set()) - 1)
+        super().sorted()
 
     def sort_recursive(self, index_start: int, index_end: int):
         data_set = super().get_data_set()
@@ -57,8 +59,8 @@ class QuickSort(SortingAlgorithm):
 
 
 class InsertionSort(SortingAlgorithm):
-    def __init__(self, data_set: list, call_on_swap):
-        super().__init__(data_set, call_on_swap)
+    def __init__(self, data_set: list, call_on_swap, redraw_step_size: int):
+        super().__init__(data_set, call_on_swap, redraw_step_size)
 
     def sort(self):
         data_set = super().get_data_set()
@@ -70,6 +72,7 @@ class InsertionSort(SortingAlgorithm):
                 super().insert(j, data_set[j - 1])
                 j = j - 1
             super().insert(j, val)
+        super().sorted()
 
     @staticmethod
     def name():
@@ -77,8 +80,8 @@ class InsertionSort(SortingAlgorithm):
 
 
 class SelectionSort(SortingAlgorithm):
-    def __init__(self, data_set: list, call_on_swap):
-        super().__init__(data_set, call_on_swap)
+    def __init__(self, data_set: list, call_on_swap, redraw_step_size: int):
+        super().__init__(data_set, call_on_swap, redraw_step_size)
 
     def sort(self):
         data_set = super().get_data_set()
@@ -90,6 +93,7 @@ class SelectionSort(SortingAlgorithm):
                     min = j
             if min != i:
                 super().swap(i, min)
+        super().sorted()
 
     @staticmethod
     def name():
